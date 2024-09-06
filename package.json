@@ -1,0 +1,19 @@
+{
+  "name": "advents-react-native",
+  "description": "Advents React Native SDK for sending events to the Advents API.",
+  "version": "0.0.1",
+  "scripts": {
+    "lint": "eslint . --fix && prettier . \"!**/pnpm-lock.yaml\" --write"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-react": "^7.34.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3"
+  }
+}
