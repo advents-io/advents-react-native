@@ -27,14 +27,15 @@ interface SessionData {
   appVersion: string | null
 }
 
-export class Advents {
+class Advents {
   private sessionData: SessionData | undefined
+  private initialized: boolean = false
 
-  constructor() {
-    this.init()
-  }
+  async init() {
+    if (this.initialized) {
+      return
+    }
 
-  private async init() {
     try {
       const iosIdfv = Platform.OS === 'ios' ? await getIosIdForVendorAsync() : null
       const androidId = Platform.OS === 'android' ? getAndroidId() : null
@@ -62,8 +63,23 @@ export class Advents {
       }
 
       await api.post('/session', this.sessionData)
+      this.initialized = true
     } catch {
       console.error('There was an error while initializing Advents.')
     }
   }
 }
+
+let adventsInstance: Advents | null = null
+
+const getAdventsInstance = (): Advents => {
+  if (!adventsInstance) {
+    adventsInstance = new Advents()
+  }
+
+  return adventsInstance
+}
+
+const advents = getAdventsInstance()
+
+export { advents }
