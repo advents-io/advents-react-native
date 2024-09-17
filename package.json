@@ -12,7 +12,14 @@
   "scripts": {
     "lint": "eslint . --fix && prettier . \"!**/pnpm-lock.yaml\" --write"
   },
+  "peerDependencies": {
+    "expo-application": "^5",
+    "expo-device": "^5",
+    "expo-constants": "^14",
+    "react-native": "^0.73"
+  },
   "devDependencies": {
+    "@types/node": "^22.5.4",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
     "eslint": "^8.57.0",
