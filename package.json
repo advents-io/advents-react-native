@@ -1,29 +1,34 @@
 {
   "name": "advents-react-native",
   "description": "Advents React Native SDK for sending events to the Advents API.",
-  "version": "0.0.3",
-  "main": "src/index.ts",
-  "files": [
-    "src/index.ts"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/advents-io/advents-react-native.git"
-  },
+  "version": "0.0.7",
   "author": "Gabriel Moresco gabriel@advents.io (https://github.com/gabriel-moresco)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/advents-io/advents-react-native/issues"
   },
   "homepage": "https://advents.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/advents-io/advents-react-native.git"
+  },
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "files": [
+    "dist/index.mjs",
+    "dist/index.d.mts"
+  ],
   "scripts": {
-    "lint": "eslint . --fix && prettier . \"!**/pnpm-lock.yaml\" --write"
+    "lint": "eslint . --fix && prettier . --write",
+    "build": "rm -rf dist && tsup",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
-    "expo-application": "^5",
-    "expo-device": "^5",
-    "expo-constants": "^14",
-    "react-native": "^0.73"
+    "expo-application": "*",
+    "expo-constants": "*",
+    "expo-device": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
@@ -35,6 +40,7 @@
     "eslint-plugin-react": "^7.34.4",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.3.3",
+    "tsup": "^8.3.0",
     "typescript": "^5.5.3"
   }
 }
