@@ -4,6 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  ignorePatterns: ['node_modules', 'pnpm-lock.yaml', 'dist', 'examples'],
   extends: [
     'plugin:react/recommended',
     'standard',
