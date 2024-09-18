@@ -30,13 +30,16 @@ interface SessionData {
 class Advents {
   private sessionData: SessionData | undefined
   private initialized: boolean = false
+  private apiKey: string | undefined
 
-  async init() {
+  async init(apiKey: string) {
     if (this.initialized) {
       return
     }
 
     try {
+      this.apiKey = apiKey
+
       const iosIdfv = Platform.OS === 'ios' ? await getIosIdForVendorAsync() : null
       const androidId = Platform.OS === 'android' ? getAndroidId() : null
 
@@ -62,7 +65,7 @@ class Advents {
         appVersion: nativeApplicationVersion,
       }
 
-      await api.post('/session', this.sessionData)
+      await api.post('/session', this.sessionData, this.apiKey)
       this.initialized = true
     } catch {
       console.error('There was an error while initializing Advents.')

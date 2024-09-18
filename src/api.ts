@@ -6,7 +6,12 @@ export const api = {
   post,
 }
 
-async function post(url: string, data: object | null | undefined, retry: number = 0) {
+async function post(
+  url: string,
+  data: object | null | undefined,
+  apiKey: string,
+  retry: number = 0,
+) {
   try {
     const finalUrl = url.startsWith('/') ? url : `${url}/`
 
@@ -14,18 +19,19 @@ async function post(url: string, data: object | null | undefined, retry: number 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
       },
       body: data ? JSON.stringify(data) : null,
       keepalive: true,
     })
 
     if (response.status === 401) {
-      console.error('Advents: unauthorized.')
+      console.error('Advents: Unauthorized.')
       return
     }
 
     if (response.status === 403) {
-      console.error('Advents: forbidden.')
+      console.error('Advents: Forbidden.')
       return
     }
 
@@ -34,7 +40,7 @@ async function post(url: string, data: object | null | undefined, retry: number 
     }
   } catch {
     if (retry >= MAX_RETRIES) {
-      console.error('Advents: max post retries reached.')
+      console.error('Advents: Max api retries reached.')
       return
     }
 
@@ -42,6 +48,6 @@ async function post(url: string, data: object | null | undefined, retry: number 
 
     await new Promise(resolve => setTimeout(resolve, delay))
 
-    await post(url, data, retry + 1)
+    await post(url, data, apiKey, retry + 1)
   }
 }
