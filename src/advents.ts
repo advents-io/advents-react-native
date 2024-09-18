@@ -2,7 +2,6 @@ import {
   getAndroidId,
   getInstallationTimeAsync,
   getInstallReferrerAsync,
-  getIosIdForVendorAsync,
   nativeApplicationVersion,
 } from 'expo-application'
 import Constants from 'expo-constants'
@@ -12,6 +11,7 @@ import { Platform } from 'react-native'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
 import { logger } from '@/utils/logger'
+import { sdkName, sdkVersion } from '@/utils/package'
 
 class Advents {
   private session: Session | undefined
@@ -42,7 +42,7 @@ class Advents {
    * ```typescript
    * import { advents } from 'advents-react-native'
    *
-   * await advents.init('advents_apiKey', true)
+   * advents.init('advents_apiKey', true)
    * ```
    */
   async init(apiKey: string, debug = false) {
@@ -54,29 +54,32 @@ class Advents {
       this.apiKey = apiKey
       this._debug = debug
 
-      const iosIdfv = Platform.OS === 'ios' ? await getIosIdForVendorAsync() : null
       const androidId = Platform.OS === 'android' ? getAndroidId() : null
 
       const androidInstallReferrer =
         Platform.OS === 'android' ? await getInstallReferrerAsync() : null
-      const installTime = await getInstallationTimeAsync()
+      const androidInstallTime = await getInstallationTimeAsync()
 
       const userAgent = await Constants.getWebViewUserAgentAsync()
 
       this.session = {
-        iosIdfv,
+        sdkName,
+        sdkVersion,
+        os: Platform.OS,
+
         androidId,
         androidInstallReferrer,
-        installTime,
+        androidInstallTime,
 
         userAgent,
         deviceName,
         deviceBrand: brand,
         deviceModel: modelName,
         deviceYearClass: deviceYearClass?.toString() || null,
-        osName: Platform.OS,
         osVersion,
         appVersion: nativeApplicationVersion,
+
+        timestamp: new Date(),
       }
 
       await api.post('/session', this.session, this.apiKey)
@@ -97,6 +100,18 @@ const getAdventsInstance = (): Advents => {
   return adventsInstance
 }
 
+/**
+ * The main entry point for the Advents SDK.
+ *
+ * First you need to initialize the SDK with your API key.
+ *
+ * @example
+ * ```typescript
+ * import { advents } from 'advents-react-native'
+ *
+ * advents.init('advents_apiKey', true)
+ * ```
+ */
 const advents = getAdventsInstance()
 
 export { advents }
