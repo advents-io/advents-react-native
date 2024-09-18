@@ -1,3 +1,5 @@
+import { logger } from '@/utils/logger'
+
 const MAX_RETRIES = 3
 const BASE_RETRY_DELAY = 500
 const BASE_URL = 'https://app.advents.io/api/events'
@@ -26,12 +28,12 @@ async function post(
     })
 
     if (response.status === 401) {
-      console.error('Advents: Unauthorized.')
+      logger.error('Advents: Unauthorized.')
       return
     }
 
     if (response.status === 403) {
-      console.error('Advents: Forbidden.')
+      logger.error('Advents: Forbidden.')
       return
     }
 
@@ -40,7 +42,7 @@ async function post(
     }
   } catch {
     if (retry >= MAX_RETRIES) {
-      console.error('Advents: Max api retries reached.')
+      logger.error('Advents: Max api retries reached.')
       return
     }
 
