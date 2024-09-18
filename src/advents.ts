@@ -11,7 +11,7 @@ import { Platform } from 'react-native'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
 import { logger } from '@/utils/logger'
-import { sdkName, sdkVersion } from '@/utils/package'
+import { sdkVersion } from '@/utils/package'
 
 class Advents {
   private session: Session | undefined
@@ -63,7 +63,7 @@ class Advents {
       const userAgent = await Constants.getWebViewUserAgentAsync()
 
       this.session = {
-        sdkName,
+        sdkName: 'react-native',
         sdkVersion,
         os: Platform.OS,
 
