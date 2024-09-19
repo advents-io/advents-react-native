@@ -82,7 +82,7 @@ class Advents {
         timestamp: new Date(),
       }
 
-      await api.post('/session', this.session, this.apiKey)
+      await api.post('/sessions', this.session, this.apiKey)
       this.initialized = true
     } catch {
       logger.error('There was an error while initializing Advents.')
