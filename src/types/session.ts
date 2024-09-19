@@ -5,8 +5,7 @@ export interface Session {
 
   androidId: string | null
   androidInstallReferrer: string | null
-  androidInstallTime: Date | null
-
+  installTime: Date | null
   userAgent: string | null
   deviceName: string | null
   deviceBrand: string | null

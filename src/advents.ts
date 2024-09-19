@@ -58,7 +58,7 @@ class Advents {
 
       const androidInstallReferrer =
         Platform.OS === 'android' ? await getInstallReferrerAsync() : null
-      const androidInstallTime = await getInstallationTimeAsync()
+      const installTime = await getInstallationTimeAsync()
 
       const userAgent = await Constants.getWebViewUserAgentAsync()
 
@@ -69,8 +69,7 @@ class Advents {
 
         androidId,
         androidInstallReferrer,
-        androidInstallTime,
-
+        installTime,
         userAgent,
         deviceName,
         deviceBrand: brand,
