@@ -2,6 +2,7 @@ export interface Session {
   sdkName: string
   sdkVersion: string
   os: string
+  deviceTimestamp: Date
 
   androidId: string | null
   androidInstallReferrer: string | null
@@ -13,6 +14,4 @@ export interface Session {
   deviceYearClass: string | null
   osVersion: string | null
   appVersion: string | null
-
-  timestamp: Date
 }

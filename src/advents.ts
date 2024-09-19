@@ -66,6 +66,7 @@ class Advents {
         sdkName: 'react-native',
         sdkVersion,
         os: Platform.OS,
+        deviceTimestamp: new Date(),
 
         androidId,
         androidInstallReferrer,
@@ -77,8 +78,6 @@ class Advents {
         deviceYearClass: deviceYearClass?.toString() || null,
         osVersion,
         appVersion: nativeApplicationVersion,
-
-        timestamp: new Date(),
       }
 
       await api.post('/sessions', this.session, this.apiKey)
