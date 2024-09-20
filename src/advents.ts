@@ -4,7 +4,6 @@ import {
   getInstallReferrerAsync,
   nativeApplicationVersion,
 } from 'expo-application'
-import Constants from 'expo-constants'
 import { brand, deviceName, deviceYearClass, modelName, osVersion } from 'expo-device'
 import { Platform } from 'react-native'
 
@@ -50,6 +49,11 @@ class Advents {
       return
     }
 
+    if (Platform.OS !== 'android' && Platform.OS !== 'ios') {
+      logger.warn('Advents is not supported on this platform.')
+      return
+    }
+
     try {
       this.apiKey = apiKey
       this._debug = debug
@@ -60,8 +64,6 @@ class Advents {
         Platform.OS === 'android' ? await getInstallReferrerAsync() : null
       const installTime = await getInstallationTimeAsync()
 
-      const userAgent = await Constants.getWebViewUserAgentAsync()
-
       this.session = {
         sdkName: 'react-native',
         sdkVersion,
@@ -71,7 +73,7 @@ class Advents {
         androidId,
         androidInstallReferrer,
         installTime,
-        userAgent,
+
         deviceName,
         deviceBrand: brand,
         deviceModel: modelName,

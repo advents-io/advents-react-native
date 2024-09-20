@@ -8,6 +8,14 @@ const log = (...args: unknown[]) => {
   console.log(...args)
 }
 
+const warn = (...args: unknown[]) => {
+  if (!advents.debug) {
+    return
+  }
+
+  console.warn(...args)
+}
+
 const error = (...args: unknown[]) => {
   if (!advents.debug) {
     return
@@ -18,6 +26,7 @@ const error = (...args: unknown[]) => {
 
 const logger = {
   log,
+  warn,
   error,
 }
 

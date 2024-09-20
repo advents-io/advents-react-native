@@ -25,7 +25,6 @@
   },
   "peerDependencies": {
     "expo-application": "*",
-    "expo-constants": "*",
     "expo-device": "*",
     "react-native": "*"
   },
