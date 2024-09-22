@@ -90,14 +90,14 @@ class Advents {
   }
 }
 
-let adventsInstance: Advents | null = null
+let instance: Advents | null = null
 
-const getAdventsInstance = (): Advents => {
-  if (!adventsInstance) {
-    adventsInstance = new Advents()
+const getInstance = (): Advents => {
+  if (!instance) {
+    instance = new Advents()
   }
 
-  return adventsInstance
+  return instance
 }
 
 /**
@@ -112,6 +112,6 @@ const getAdventsInstance = (): Advents => {
  * advents.init('advents_apiKey', true)
  * ```
  */
-const advents = getAdventsInstance()
+const advents = getInstance()
 
 export { advents }
