@@ -16,11 +16,12 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
   "files": [
-    "dist/**"
+    "dist"
   ],
   "scripts": {
     "lint": "eslint . --fix && prettier . --write",
-    "build": "rm -rf dist && tsup",
+    "build": "tsup",
+    "use-build": "./scripts/use-build.sh",
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
