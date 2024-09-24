@@ -1,16 +1,9 @@
-import {
-  getAndroidId,
-  getInstallationTimeAsync,
-  getInstallReferrerAsync,
-  nativeApplicationVersion,
-} from 'expo-application'
-import { brand, deviceName, deviceYearClass, modelName, osVersion } from 'expo-device'
 import { Platform } from 'react-native'
 
+import { getSessionData } from '@/handlers/session-handler'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
 import { logger } from '@/utils/logger'
-import { sdkVersion } from '@/utils/package'
 
 class Advents {
   private session: Session | undefined
@@ -45,47 +38,28 @@ class Advents {
    * ```
    */
   async init(apiKey: string, debug = false) {
-    if (this.initialized) {
-      return
-    }
-
-    if (Platform.OS !== 'android' && Platform.OS !== 'ios') {
-      logger.warn('Advents is not supported on this platform.')
-      return
-    }
-
     try {
-      this.apiKey = apiKey
-      this._debug = debug
-
-      const androidId = Platform.OS === 'android' ? getAndroidId() : null
-
-      const androidInstallReferrer =
-        Platform.OS === 'android' ? await getInstallReferrerAsync() : null
-      const installTime = await getInstallationTimeAsync()
-
-      this.session = {
-        sdkName: 'react-native',
-        sdkVersion,
-        os: Platform.OS,
-        deviceTimestamp: new Date(),
-
-        androidId,
-        androidInstallReferrer,
-        installTime,
-
-        deviceName,
-        deviceBrand: brand,
-        deviceModel: modelName,
-        deviceYearClass: deviceYearClass?.toString() || null,
-        osVersion,
-        appVersion: nativeApplicationVersion,
+      if (this.initialized) {
+        return
       }
 
+      if (Platform.OS !== 'android' && Platform.OS !== 'ios') {
+        logger.warn('Advents: This platform is not supported.')
+        return
+      }
+
+      if (!apiKey) {
+        logger.error('Advents: API key is required.')
+        return
+      }
+
+      this.apiKey = apiKey
+      this._debug = debug
+      this.session = await getSessionData()
       await api.post('/sessions', this.session, this.apiKey)
       this.initialized = true
     } catch {
-      logger.error('There was an error while initializing Advents.')
+      logger.error('Advents: There was an error while initializing.')
     }
   }
 }

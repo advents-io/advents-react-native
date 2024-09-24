@@ -27,6 +27,7 @@
   "peerDependencies": {
     "expo-application": "*",
     "expo-device": "*",
+    "expo-clipboard": "*",
     "react-native": "*"
   },
   "devDependencies": {

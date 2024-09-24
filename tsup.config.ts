@@ -2,8 +2,9 @@ import { defineConfig, Options } from 'tsup'
 
 export default defineConfig((options: Options) => ({
   entry: ['src/index.ts'],
-  dts: true,
   format: ['esm'],
+  dts: true,
+  minify: true,
   clean: true,
   ...options,
 }))

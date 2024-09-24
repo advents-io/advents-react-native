@@ -1,11 +1,20 @@
+export interface AndroidSessionData {
+  deviceId: string | null
+  installReferrer: string | null
+}
+
+export interface IosSessionData {
+  clickId: string | null
+}
+
 export interface Session {
   sdkName: string
   sdkVersion: string
-  os: string
   deviceTimestamp: Date
+  os: string
 
-  androidId: string | null
-  androidInstallReferrer: string | null
+  android: AndroidSessionData | null
+  ios: IosSessionData | null
   installTime: Date | null
 
   deviceName: string | null
