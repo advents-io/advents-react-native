@@ -28,6 +28,8 @@
     "expo-application": "*",
     "expo-device": "*",
     "expo-clipboard": "*",
+    "expo-constants": "*",
+    "expo-tracking-transparency": "*",
     "react-native": "*"
   },
   "devDependencies": {

@@ -1,11 +1,24 @@
 import {
+  applicationId,
   getAndroidId,
   getInstallationTimeAsync,
   getInstallReferrerAsync,
+  getIosIdForVendorAsync,
   nativeApplicationVersion,
 } from 'expo-application'
 import { getUrlAsync, hasUrlAsync } from 'expo-clipboard'
-import { brand, deviceName, deviceYearClass, modelName, osVersion } from 'expo-device'
+import Constants from 'expo-constants'
+import {
+  brand,
+  deviceName,
+  deviceType,
+  deviceYearClass,
+  modelId,
+  modelName,
+  osBuildId,
+  osVersion,
+} from 'expo-device'
+import { getAdvertisingId, getTrackingPermissionsAsync } from 'expo-tracking-transparency'
 import { Platform } from 'react-native'
 
 import { AndroidSessionData, IosSessionData, Session } from '@/types/session'
@@ -13,53 +26,72 @@ import { sdkVersion } from '@/utils/package'
 
 export const getSessionData = async (): Promise<Session> => {
   const installTime = await getInstallationTimeAsync()
+  const userAgent = await Constants.getWebViewUserAgentAsync()
 
-  const androidSessionData = await getAndroidSessionData()
-  const iosSessionData = await getIosSessionData()
+  const { major, minor, patch, prerelease } = Platform.constants.reactNativeVersion
+  const formatedPrerelease = prerelease ? `.${prerelease}` : ''
+  const framework = `react-native@${major}.${minor}.${patch}${formatedPrerelease}`
 
   const session: Session = {
     sdkName: 'react-native',
     sdkVersion,
-    deviceTimestamp: new Date(),
+    framework,
+    deviceTime: new Date(),
     os: Platform.OS,
+    package: applicationId,
 
-    android: androidSessionData,
-    ios: iosSessionData,
+    ...(await getAndroidSessionData()),
+    ...(await getIosSessionData()),
+
     installTime,
-
+    userAgent,
     deviceName,
     deviceBrand: brand,
     deviceModel: modelName,
+    deviceType: deviceType?.toString() || null,
     deviceYearClass: deviceYearClass?.toString() || null,
     osVersion,
+    osBuildId,
     appVersion: nativeApplicationVersion,
   }
 
   return session
 }
 
-const getAndroidSessionData = async (): Promise<AndroidSessionData | null> => {
+const getAndroidSessionData = async (): Promise<AndroidSessionData> => {
   if (Platform.OS !== 'android') {
-    return null
+    return {
+      androidAaid: null,
+      androidId: null,
+      androidInstallReferrer: null,
+    }
   }
 
-  const deviceId = getAndroidId()
-  const installReferrer = await getInstallReferrerAsync()
+  const androidAaid = getAdvertisingId()
+  const androidId = getAndroidId()
+  const androidInstallReferrer = await getInstallReferrerAsync()
 
-  const sessionData: AndroidSessionData = {
-    deviceId,
-    installReferrer,
+  return {
+    androidAaid,
+    androidId,
+    androidInstallReferrer,
   }
-
-  return sessionData
 }
 
-const getIosSessionData = async (): Promise<IosSessionData | null> => {
+const getIosSessionData = async (): Promise<IosSessionData> => {
   if (Platform.OS !== 'ios') {
-    return null
+    return {
+      iosIdfv: null,
+      iosIdfa: null,
+      iosAttPermissionStatus: null,
+      iosClipboardClickId: null,
+      iosDeviceModelId: null,
+    }
   }
 
-  let clickId: string | null = null
+  const iosIdfv = await getIosIdForVendorAsync()
+
+  let iosClipboardClickId: string | null = null
 
   const clipboardHasUrl = await hasUrlAsync()
 
@@ -70,13 +102,42 @@ const getIosSessionData = async (): Promise<IosSessionData | null> => {
       !!clipboardUrl && clipboardUrl.startsWith('https://advents.io/click_id=')
 
     if (isAdventsClickId) {
-      clickId = clipboardUrl.split('https://advents.io/click_id=')[1]
+      iosClipboardClickId = clipboardUrl.split('https://advents.io/click_id=')[1]
     }
   }
 
-  const sessionData: IosSessionData = {
-    clickId,
+  return {
+    iosIdfv,
+    ...(await getIosTrackingData()),
+    iosClipboardClickId,
+    iosDeviceModelId: modelId,
+  }
+}
+
+const getIosTrackingData = async (): Promise<{
+  iosIdfa: string | null
+  iosAttPermissionStatus: string | null
+}> => {
+  if (Platform.OS !== 'ios') {
+    return {
+      iosIdfa: null,
+      iosAttPermissionStatus: null,
+    }
   }
 
-  return sessionData
+  const { granted, status: iosAttPermissionStatus } = await getTrackingPermissionsAsync()
+
+  if (!granted) {
+    return {
+      iosIdfa: null,
+      iosAttPermissionStatus,
+    }
+  }
+
+  const iosIdfa = getAdvertisingId()
+
+  return {
+    iosIdfa,
+    iosAttPermissionStatus,
+  }
 }

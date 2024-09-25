@@ -14,9 +14,15 @@ importers:
       expo-clipboard:
         specifier: '*'
         version: 6.0.3(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
+      expo-constants:
+        specifier: '*'
+        version: 16.0.2(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
       expo-device:
         specifier: '*'
         version: 5.9.4(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
+      expo-tracking-transparency:
+        specifier: '*'
+        version: 4.0.2(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
       react-native:
         specifier: '*'
         version: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
@@ -2386,6 +2392,11 @@ packages:
 
   expo-modules-core@1.12.24:
     resolution: {integrity: sha512-3geIe2ecizlp7l26iY8Nmc59z2d1RUC5nQZtI9iJoi5uHEUV/zut8e4zRLFVnZb8KOcMcEDsrvaBL5DPnqdfpg==}
+
+  expo-tracking-transparency@4.0.2:
+    resolution: {integrity: sha512-ZQzdR9D6LHr60QEwwJq2OLl0bwzgqt+O2C/OqSchFR1IekL4syf53f9QmjHK8oRIkLzEGxKIirTrKcE0j9Ko6A==}
+    peerDependencies:
+      expo: '*'
 
   expo@51.0.32:
     resolution: {integrity: sha512-6GEhYvHRnyS/6BytQagGkClsaqbuwAtlN3A6oDfnNMRKLmz6NE/r+Rjg9zbQgUO6zigqb60Yj5lAX32DmixRDw==}
@@ -7862,6 +7873,10 @@ snapshots:
   expo-modules-core@1.12.24:
     dependencies:
       invariant: 2.2.4
+
+  expo-tracking-transparency@4.0.2(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))):
+    dependencies:
+      expo: 51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))
 
   expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)):
     dependencies:
