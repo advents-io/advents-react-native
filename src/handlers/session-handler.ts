@@ -11,6 +11,7 @@ import Constants from 'expo-constants'
 import {
   brand,
   deviceName,
+  DeviceType,
   deviceType,
   deviceYearClass,
   modelId,
@@ -48,7 +49,7 @@ export const getSessionData = async (): Promise<Session> => {
     deviceName,
     deviceBrand: brand,
     deviceModel: modelName,
-    deviceType: deviceType?.toString() || null,
+    deviceType: deviceType ? DeviceType[deviceType] : null,
     deviceYearClass: deviceYearClass?.toString() || null,
     osVersion,
     osBuildId,
