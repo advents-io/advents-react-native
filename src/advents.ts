@@ -69,8 +69,8 @@ class Advents {
       this.session = await getSessionData()
       await api.post('/sessions', this.session, this.apiKey)
       this.initialized = true
-    } catch {
-      logger.error('Advents: There was an error while initializing.')
+    } catch (e) {
+      logger.error('Advents: There was an error while initializing.', e)
     }
   }
 }

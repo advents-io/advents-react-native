@@ -4,7 +4,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { advents } from '../advents-react-native/index.mjs'
+import { advents } from '../advents-react-native'
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -17,7 +17,7 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
-  advents.init(process.env.EXPO_PUBLIC_ADVENTS_API_KEY!)
+  advents.init(process.env.EXPO_PUBLIC_ADVENTS_API_KEY!, true)
 
   useEffect(() => {
     if (loaded) {

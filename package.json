@@ -1,7 +1,7 @@
 {
   "name": "advents-react-native",
   "description": "Advents React Native SDK for sending events to the Advents API.",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "author": "Gabriel Moresco gabriel@advents.io (https://github.com/gabriel-moresco)",
   "license": "MIT",
   "bugs": {
@@ -12,9 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/advents-io/advents-react-native.git"
   },
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.mts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],

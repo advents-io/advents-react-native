@@ -19,7 +19,8 @@ try {
 } catch {}
 
 try {
-  OptionalExpoConstants = require('expo-constants')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  OptionalExpoConstants = require('expo-constants').default
 } catch {}
 
 try {
