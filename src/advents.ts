@@ -1,6 +1,8 @@
 import { Platform } from 'react-native'
 
 import { getSessionData } from '@/handlers/session-handler'
+import { expoModules } from '@/lib/expo-modules'
+import { reactNativeModules } from '@/lib/react-native-modules'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
 import { logger } from '@/utils/logger'
@@ -50,6 +52,15 @@ class Advents {
 
       if (!apiKey) {
         logger.error('Advents: API key is required.')
+        return
+      }
+
+      const validPackageConfig = !!expoModules || !!reactNativeModules
+
+      if (!validPackageConfig) {
+        logger.error(
+          'Advents: Project is not configured correctly, please check the documentation. https://docs.advents.io',
+        )
         return
       }
 

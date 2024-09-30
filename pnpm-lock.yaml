@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@react-native-clipboard/clipboard':
+        specifier: '*'
+        version: 1.14.2(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))(react@18.2.0)
+      '@sparkfabrik/react-native-idfa-aaid':
+        specifier: '*'
+        version: 1.2.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))(react@18.2.0)
       expo-application:
         specifier: '*'
         version: 5.9.1(expo@51.0.32(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2)))
@@ -26,6 +32,9 @@ importers:
       react-native:
         specifier: '*'
         version: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
+      react-native-device-info:
+        specifier: '*'
+        version: 13.0.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))
     devDependencies:
       '@types/node':
         specifier: ^22.5.4
@@ -1156,6 +1165,19 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
+  '@react-native-clipboard/clipboard@1.14.2':
+    resolution: {integrity: sha512-Mb58f3neB6sM9oOtKYVGLvN8KVByea67OA9ekJ0c9FwdH24INu8RJoA7/fq+PRk+7oxbeamAcEoQPRv0uwbbMw==}
+    peerDependencies:
+      react: '>= 16.9.0'
+      react-native: '>= 0.61.5'
+      react-native-macos: '>= 0.61.0'
+      react-native-windows: '>= 0.61.0'
+    peerDependenciesMeta:
+      react-native-macos:
+        optional: true
+      react-native-windows:
+        optional: true
+
   '@react-native-community/cli-clean@12.3.7':
     resolution: {integrity: sha512-BCYW77QqyxfhiMEBOoHyciJRNV6Rhz1RvclReIKnCA9wAwmoJBeu4Mu+AwiECA2bUITX16fvPt3NwDsSd1jwfQ==}
 
@@ -1383,6 +1405,12 @@ packages:
 
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
+
+  '@sparkfabrik/react-native-idfa-aaid@1.2.0':
+    resolution: {integrity: sha512-Cczob0A4FsX/kZ6YK23YnrkmsFYfhYcTRXPNnnnbAbbhngHw7MJ1N6RTwVr0/vYQMiY12TYgbeShFYExjY2bUA==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -3798,6 +3826,11 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-native-device-info@13.0.0:
+    resolution: {integrity: sha512-TKCq4XKl8lzB04RdEbADxkbzDJwOfWcxZxNcf1LweT+A+KRAUv1no7bch7RM0WLyMVKMTa2hbusESnzxB5QQRA==}
+    peerDependencies:
+      react-native: '*'
+
   react-native@0.73.9:
     resolution: {integrity: sha512-U9Lc6GMdANG2/9uREZe/UTQEzdVWw6NLRYxBYaFWNqiu/qZAmZ0aXSNcVF6hWw/95Ex0IGQx6EVMT4iPmuSNQw==}
     engines: {node: '>=18'}
@@ -6183,6 +6216,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
+  '@react-native-clipboard/clipboard@1.14.2(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-native: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
+
   '@react-native-community/cli-clean@12.3.7':
     dependencies:
       '@react-native-community/cli-tools': 12.3.7
@@ -6635,6 +6673,11 @@ snapshots:
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
       '@sinonjs/commons': 3.0.1
+
+  '@sparkfabrik/react-native-idfa-aaid@1.2.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-native: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
 
   '@types/estree@1.0.5': {}
 
@@ -9386,6 +9429,10 @@ snapshots:
   react-is@17.0.2: {}
 
   react-is@18.3.1: {}
+
+  react-native-device-info@13.0.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)):
+    dependencies:
+      react-native: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
 
   react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0):
     dependencies:

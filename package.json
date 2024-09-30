@@ -7,7 +7,7 @@
   "bugs": {
     "url": "https://github.com/advents-io/advents-react-native/issues"
   },
-  "homepage": "https://advents.io",
+  "homepage": "https://docs.advents.io",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/advents-io/advents-react-native.git"
@@ -25,12 +25,41 @@
     "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
+    "react-native": "*",
     "expo-application": "*",
     "expo-device": "*",
     "expo-clipboard": "*",
     "expo-constants": "*",
     "expo-tracking-transparency": "*",
-    "react-native": "*"
+    "react-native-device-info": "*",
+    "@react-native-clipboard/clipboard": "*",
+    "@sparkfabrik/react-native-idfa-aaid": "*"
+  },
+  "peerDependenciesMeta": {
+    "expo-application": {
+      "optional": true
+    },
+    "expo-device": {
+      "optional": true
+    },
+    "expo-clipboard": {
+      "optional": true
+    },
+    "expo-constants": {
+      "optional": true
+    },
+    "expo-tracking-transparency": {
+      "optional": true
+    },
+    "react-native-device-info": {
+      "optional": true
+    },
+    "@react-native-clipboard/clipboard": {
+      "optional": true
+    },
+    "@sparkfabrik/react-native-idfa-aaid": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/node": "^22.5.4",

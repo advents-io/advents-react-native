@@ -26,7 +26,6 @@ export interface Session extends AndroidSessionData, IosSessionData {
   deviceBrand: string | null
   deviceModel: string | null
   deviceType: string | null
-  deviceYearClass: string | null
   osVersion: string | null
   osBuildId: string | null
   appVersion: string | null
