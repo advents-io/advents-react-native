@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://advents.io" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="misc/logo-dark.svg" />
-      <source media="(prefers-color-scheme: light)" srcset="misc/logo-light.svg" />
-      <img src="misc/logo-dark.svg" alt="Advents logo" width="312px" />
+      <source media="(prefers-color-scheme: dark)" srcset="misc/brand-dark.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="misc/brand-light.svg" />
+      <img src="misc/brand-dark.svg" alt="Advents" width="312px" />
     </picture>
   </a>
 </p>
