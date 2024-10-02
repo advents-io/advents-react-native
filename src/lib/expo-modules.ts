@@ -35,8 +35,7 @@ const validExpoProject =
   !!OptionalExpoApplication &&
   !!OptionalExpoClipboard &&
   !!OptionalExpoConstants &&
-  !!OptionalExpoDevice &&
-  !!OptionalExpoTrackingTransparency
+  !!OptionalExpoDevice
 
 export const expoModules = validExpoProject
   ? {
@@ -44,6 +43,6 @@ export const expoModules = validExpoProject
       clipboard: OptionalExpoClipboard!,
       constants: OptionalExpoConstants!,
       device: OptionalExpoDevice!,
-      trackingTransparency: OptionalExpoTrackingTransparency!,
+      advertising: OptionalExpoTrackingTransparency,
     }
   : null

@@ -21,14 +21,12 @@ try {
 } catch {}
 
 const validBareReactNativeProject =
-  !!OptionalReactNativeDeviceInfo &&
-  !!OptionalReactNativeClipboard &&
-  !!OptionalReactNativeAdvertising
+  !!OptionalReactNativeDeviceInfo && !!OptionalReactNativeClipboard
 
 export const reactNativeModules = validBareReactNativeProject
   ? {
       device: OptionalReactNativeDeviceInfo!,
       clipboard: OptionalReactNativeClipboard!,
-      advertising: OptionalReactNativeAdvertising!,
+      advertising: OptionalReactNativeAdvertising,
     }
   : null

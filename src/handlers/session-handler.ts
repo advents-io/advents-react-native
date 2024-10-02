@@ -1,4 +1,3 @@
-import { DeviceType } from 'expo-device'
 import { Platform } from 'react-native'
 
 import { expoModules } from '@/lib/expo-modules'
@@ -7,16 +6,16 @@ import { AndroidSessionData, IosSessionData, Session } from '@/types/session'
 import { sdkVersion } from '@/utils/package'
 
 export const getSessionData = async (): Promise<Session> => {
-  let packageName = null
-  let installTime = null
-  let userAgent = null
-  let deviceName = null
-  let deviceBrand = null
-  let deviceModel = null
-  let deviceType = null
-  let osVersion = null
-  let osBuildId = null
-  let appVersion = null
+  let packageName: string | null = null
+  let installTime: Date | null = null
+  let userAgent: string | null = null
+  let deviceName: string | null = null
+  let deviceBrand: string | null = null
+  let deviceModel: string | null = null
+  let deviceType: string | null = null
+  let osVersion: string | null = null
+  let osBuildId: string | null = null
+  let appVersion: string | null = null
 
   const { major, minor, patch, prerelease } = Platform.constants.reactNativeVersion
   const formatedPrerelease = prerelease ? `.${prerelease}` : ''
@@ -31,7 +30,9 @@ export const getSessionData = async (): Promise<Session> => {
     deviceName = expoModules.device.deviceName
     deviceBrand = expoModules.device.brand
     deviceModel = expoModules.device.modelName
-    deviceType = expoModules.device.deviceType ? DeviceType[expoModules.device.deviceType] : null
+    deviceType = expoModules.device.deviceType
+      ? expoModules.device.DeviceType[expoModules.device.deviceType]
+      : null
     osVersion = expoModules.device.osVersion
     osBuildId = expoModules.device.osBuildId
     appVersion = expoModules.application.nativeApplicationVersion
@@ -83,16 +84,16 @@ const getAndroidSessionData = async (): Promise<AndroidSessionData> => {
     }
   }
 
-  let androidAaid = null
-  let androidId = null
-  let androidInstallReferrer = null
+  let androidAaid: string | null = null
+  let androidId: string | null = null
+  let androidInstallReferrer: string | null = null
 
   if (expoModules) {
-    androidAaid = expoModules.trackingTransparency.getAdvertisingId()
+    androidAaid = expoModules.advertising?.getAdvertisingId() || null
     androidId = expoModules.application.getAndroidId()
     androidInstallReferrer = await expoModules.application.getInstallReferrerAsync()
   } else if (reactNativeModules) {
-    androidAaid = (await reactNativeModules.advertising.getAdvertisingInfo()).id
+    androidAaid = (await reactNativeModules.advertising?.getAdvertisingInfo())?.id || null
     androidId = await reactNativeModules.device.getAndroidId()
     androidInstallReferrer = await reactNativeModules.device.getInstallReferrer()
   }
@@ -115,9 +116,9 @@ const getIosSessionData = async (): Promise<IosSessionData> => {
     }
   }
 
-  let iosIdfv = null
-  let iosClipboardClickId = null
-  let iosDeviceModelId = null
+  let iosIdfv: string | null = null
+  let iosClipboardClickId: string | null = null
+  let iosDeviceModelId: string | null = null
 
   if (expoModules) {
     iosIdfv = await expoModules.application.getIosIdForVendorAsync()
@@ -172,11 +173,11 @@ const getIosTrackingData = async (): Promise<{
     }
   }
 
-  let iosIdfa = null
-  let iosAttPermissionStatus = null
+  let iosIdfa: string | null = null
+  let iosAttPermissionStatus: string | null = null
 
-  if (expoModules) {
-    const { granted, status } = await expoModules.trackingTransparency.getTrackingPermissionsAsync()
+  if (expoModules && expoModules.advertising) {
+    const { granted, status } = await expoModules.advertising.getTrackingPermissionsAsync()
 
     if (!granted) {
       return {
@@ -185,12 +186,12 @@ const getIosTrackingData = async (): Promise<{
       }
     }
 
-    iosIdfa = expoModules.trackingTransparency.getAdvertisingId()
+    iosIdfa = expoModules.advertising.getAdvertisingId()
     iosAttPermissionStatus = status
-  } else if (reactNativeModules) {
+  } else if (reactNativeModules && reactNativeModules.advertising) {
     const adInfo = await reactNativeModules.advertising.getAdvertisingInfo()
 
-    iosIdfa = adInfo.id
+    iosIdfa = adInfo.id || null
     iosAttPermissionStatus = adInfo.isAdTrackingLimited ? 'denied' : 'granted'
   }
 
