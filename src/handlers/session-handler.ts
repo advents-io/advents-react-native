@@ -191,7 +191,7 @@ const getIosTrackingData = async (): Promise<{
     const adInfo = await reactNativeModules.advertising.getAdvertisingInfo()
 
     iosIdfa = adInfo.id
-    iosAttPermissionStatus = adInfo.isAdTrackingLimited ? 'granted' : 'denied'
+    iosAttPermissionStatus = adInfo.isAdTrackingLimited ? 'denied' : 'granted'
   }
 
   return {
