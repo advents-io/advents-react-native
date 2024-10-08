@@ -8,6 +8,17 @@
   </a>
 </p>
 
+<p align="center">
+  Solução nacional de links mensuráveis, atribuição e engajamento de apps.
+  <br />
+  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo"><strong>Saiba mais »</strong></a>
+  <br />
+  <br />
+  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">Site</a>
+  ·
+  <a href="https://docs.advents.io">Documentação</a>
+</p>
+
 Este é o repositório oficial da React Native SDK da Advents.
 
 ## Documentação
@@ -31,12 +42,5 @@ Por favor, certifique-se de aderir ao estilo padrão do código do projeto.
 ## Licença
 
 Este projeto está licenciado sob a Licença GNU Affero General Public License Version 3 (AGPLv3) ou qualquer versão posterior - veja o arquivo [LICENSE](LICENSE.md) para detalhes.
-
-## Suporte
-
-Se você tiver alguma dúvida ou precisar de ajuda, entre em contato:
-
-- E-mail: contato@advents.io
-- LinkedIn: https://www.linkedin.com/company/advents-io
 
 Obrigado pelo seu interesse na Advents!
