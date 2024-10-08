@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://advents.io" target="_blank">
+  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo" target="_blank">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="misc/brand-dark.svg" />
       <source media="(prefers-color-scheme: light)" srcset="misc/brand-light.svg" />
