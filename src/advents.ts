@@ -69,6 +69,10 @@ class Advents {
       this.session = await getSessionData()
       await api.post('/sessions', this.session, this.apiKey)
       this.initialized = true
+
+      if (this._debug) {
+        logger.log('Advents: SDK initialized successfully.')
+      }
     } catch (e) {
       logger.error('Advents: There was an error while initializing.', e)
     }

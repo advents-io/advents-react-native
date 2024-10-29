@@ -51,6 +51,7 @@ export const getSessionData = async (): Promise<Session> => {
   }
 
   const session: Session = {
+    id: crypto.randomUUID(),
     sdkName: 'react-native',
     sdkVersion,
     framework,

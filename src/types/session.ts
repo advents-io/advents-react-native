@@ -13,6 +13,7 @@ export interface IosSessionData {
 }
 
 export interface Session extends AndroidSessionData, IosSessionData {
+  id: string
   sdkName: string | null
   sdkVersion: string | null
   framework: string | null

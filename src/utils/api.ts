@@ -15,7 +15,7 @@ async function post(
   retry: number = 0,
 ) {
   try {
-    const finalUrl = url.startsWith('/') ? url : `${url}/`
+    const finalUrl = url.startsWith('/') ? url : `/${url}`
 
     const response = await fetch(`${BASE_URL}${finalUrl}`, {
       method: 'POST',
