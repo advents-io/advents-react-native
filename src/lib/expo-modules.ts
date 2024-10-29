@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type ExpoApplication from 'expo-application'
 import type ExpoClipboard from 'expo-clipboard'
 import type ExpoConstants from 'expo-constants'

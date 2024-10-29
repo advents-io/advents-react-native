@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type ReactNativeClipboard from '@react-native-clipboard/clipboard'
 import type ReactNativeAdvertising from '@sparkfabrik/react-native-idfa-aaid'
 import type ReactNativeDeviceInfo from 'react-native-device-info'
