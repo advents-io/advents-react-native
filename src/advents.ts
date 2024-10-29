@@ -3,6 +3,7 @@ import { Platform } from 'react-native'
 import { getSessionData } from '@/handlers/session-handler'
 import { expoModules } from '@/lib/expo-modules'
 import { reactNativeModules } from '@/lib/react-native-modules'
+import { Purchase } from '@/types/purchase'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
 import { logger } from '@/utils/logger'
@@ -75,6 +76,50 @@ class Advents {
       }
     } catch (e) {
       logger.error('Advents: There was an error while initializing.', e)
+    }
+  }
+
+  /**
+   * Logs a purchase event to track monetary transactions in your application.
+   * The purchase will be recorded with the current timestamp and sent to Advents servers.
+   *
+   * @param params - The purchase event parameters
+   * @param params.value - The monetary value of the purchase (must be a positive number in your app's currency)
+   * @throws Will log an error if the SDK is not initialized or if the value is invalid
+   *
+   * @example
+   * ```typescript
+   * import { advents } from 'advents-react-native'
+   *
+   * await advents.logPurchase({ value: 29.99 })
+   * ```
+   */
+  async logPurchase({ value }: Purchase) {
+    try {
+      if (!this.initialized || !this.apiKey) {
+        logger.error('Advents: SDK must be initialized before logging events.')
+        return
+      }
+
+      if (typeof value !== 'number' || value <= 0) {
+        logger.error('Advents: Purchase value must be a positive number.')
+        return
+      }
+
+      await api.post(
+        '/purchases',
+        {
+          value,
+          deviceTime: new Date(),
+        },
+        this.apiKey,
+      )
+
+      if (this._debug) {
+        logger.log('Advents: Purchase logged successfully.', { value })
+      }
+    } catch (e) {
+      logger.error('Advents: Failed to log purchase.', e)
     }
   }
 }
