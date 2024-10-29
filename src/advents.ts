@@ -96,7 +96,7 @@ class Advents {
    */
   async logPurchase({ value }: Purchase) {
     try {
-      if (!this.initialized || !this.apiKey) {
+      if (!this.initialized || !this.apiKey || !this.session) {
         logger.error('Advents: SDK must be initialized before logging events.')
         return
       }
@@ -110,7 +110,7 @@ class Advents {
         '/purchases',
         {
           value,
-          deviceTime: new Date(),
+          sessionId: this.session.id,
         },
         this.apiKey,
       )
