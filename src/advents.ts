@@ -46,6 +46,8 @@ class Advents {
         return
       }
 
+      this._debug = debug
+
       if (Platform.OS !== 'android' && Platform.OS !== 'ios') {
         logger.warn('Advents: This platform is not supported.')
         return
@@ -66,14 +68,11 @@ class Advents {
       }
 
       this.apiKey = apiKey
-      this._debug = debug
       this.session = await getSessionData()
       await api.post('/sessions', this.session, this.apiKey)
       this.initialized = true
 
-      if (this._debug) {
-        logger.log('Advents: SDK initialized successfully.')
-      }
+      logger.log('Advents: SDK initialized successfully.')
     } catch (e) {
       logger.error('Advents: There was an error while initializing.', e)
     }
@@ -85,7 +84,6 @@ class Advents {
    *
    * @param params - The purchase event parameters
    * @param params.value - The monetary value of the purchase (must be a positive number in your app's currency)
-   * @throws Will log an error if the SDK is not initialized or if the value is invalid
    *
    * @example
    * ```typescript
@@ -115,9 +113,7 @@ class Advents {
         this.apiKey,
       )
 
-      if (this._debug) {
-        logger.log('Advents: Purchase logged successfully.', { value })
-      }
+      logger.log('Advents: Purchase logged successfully.', { value })
     } catch (e) {
       logger.error('Advents: Failed to log purchase.', e)
     }
