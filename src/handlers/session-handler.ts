@@ -17,14 +17,8 @@ export const getSessionData = async (): Promise<Session> => {
   let osBuildId: string | null = null
   let appVersion: string | null = null
 
-  const { major, minor, patch, prerelease } = Platform.constants.reactNativeVersion
-  const formatedPrerelease = prerelease ? `.${prerelease}` : ''
-  let framework = `react-native@${major}.${minor}.${patch}${formatedPrerelease}`
-
   if (expoModules) {
-    framework += `|expo@${expoModules.constants.expoRuntimeVersion}`
     packageName = expoModules.application.applicationId
-
     installTime = await expoModules.application.getInstallationTimeAsync()
     userAgent = await expoModules.constants.getWebViewUserAgentAsync()
     deviceName = expoModules.device.deviceName
@@ -38,7 +32,6 @@ export const getSessionData = async (): Promise<Session> => {
     appVersion = expoModules.application.nativeApplicationVersion
   } else if (reactNativeModules) {
     packageName = reactNativeModules.device.getBundleId()
-
     installTime = new Date(await reactNativeModules.device.getFirstInstallTime())
     userAgent = await reactNativeModules.device.getUserAgent()
     deviceName = await reactNativeModules.device.getDeviceName()
@@ -54,7 +47,7 @@ export const getSessionData = async (): Promise<Session> => {
     id: crypto.randomUUID(),
     sdkName: 'react-native',
     sdkVersion,
-    framework,
+    framework: getFrameworkName(),
     deviceTime: new Date(),
     os: Platform.OS,
     package: packageName,
@@ -74,6 +67,19 @@ export const getSessionData = async (): Promise<Session> => {
   }
 
   return session
+}
+
+const getFrameworkName = (): string => {
+  const { major, minor, patch, prerelease } = Platform.constants.reactNativeVersion
+  const formatedPrerelease = prerelease ? `.${prerelease}` : ''
+
+  let framework = `react-native@${major}.${minor}.${patch}${formatedPrerelease}`
+
+  if (expoModules) {
+    framework += `|expo@${expoModules.constants.expoConfig?.sdkVersion}`
+  }
+
+  return framework
 }
 
 const getAndroidSessionData = async (): Promise<AndroidSessionData> => {
@@ -163,10 +169,12 @@ const getIosSessionData = async (): Promise<IosSessionData> => {
   }
 }
 
-const getIosTrackingData = async (): Promise<{
+type IosTrackingData = {
   iosIdfa: string | null
   iosAttPermissionStatus: string | null
-}> => {
+}
+
+const getIosTrackingData = async (): Promise<IosTrackingData> => {
   if (Platform.OS !== 'ios') {
     return {
       iosIdfa: null,
