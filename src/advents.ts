@@ -33,6 +33,8 @@ class Advents {
    * @param apiKey - The API key for authentication. Get your API key from your Advents dashboard, in the project settings.
    * @param debug - Optional flag to enable logging in the console. Defaults to false.
    *
+   * @see https://docs.advents.io/sdks/react-native/introduction
+   *
    * @example
    * ```typescript
    * import { advents } from 'advents-react-native'
@@ -85,11 +87,13 @@ class Advents {
    * @param params - The purchase event parameters
    * @param params.value - The monetary value of the purchase (must be a positive number in your app's currency)
    *
+   * @see https://docs.advents.io/sdks/react-native/events#logpurchase
+   *
    * @example
    * ```typescript
    * import { advents } from 'advents-react-native'
    *
-   * await advents.logPurchase({ value: 29.99 })
+   * advents.logPurchase({ value: 29.99 })
    * ```
    */
   async logPurchase({ value }: Purchase) {
@@ -134,6 +138,8 @@ const getInstance = (): Advents => {
  * The main entry point for the Advents SDK.
  *
  * First you need to initialize the SDK with your API key.
+ *
+ * @see https://docs.advents.io/sdks/react-native/introduction
  *
  * @example
  * ```typescript
