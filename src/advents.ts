@@ -1,8 +1,10 @@
 import { Platform } from 'react-native'
 
+import { getDeviceInfo, updateInternalDeviceId } from '@/handlers/device-handler'
 import { getSessionData } from '@/handlers/session-handler'
 import { expoModules } from '@/lib/expo-modules'
 import { reactNativeModules } from '@/lib/react-native-modules'
+import { LogSessionResponse } from '@/types/log-session-response'
 import { Purchase } from '@/types/purchase'
 import { Session } from '@/types/session'
 import { api } from '@/utils/api'
@@ -12,6 +14,7 @@ class Advents {
   private session: Session | undefined
   private initialized: boolean = false
   private apiKey: string | undefined
+  private internalDeviceId: string | undefined
 
   private _debug: boolean = false
 
@@ -66,14 +69,34 @@ class Advents {
         logger.error(
           'Advents: Project is not configured correctly, please check the documentation. https://docs.advents.io',
         )
+
         return
       }
 
       this.apiKey = apiKey
-      this.session = await getSessionData()
-      await api.post('/sessions', this.session, this.apiKey)
-      this.initialized = true
 
+      const { internalDeviceId, isFirstSession } = await getDeviceInfo()
+      this.internalDeviceId = internalDeviceId
+
+      this.session = await getSessionData(isFirstSession)
+      const response = await api.post<LogSessionResponse>(
+        '/sessions',
+        this.session,
+        this.apiKey,
+        internalDeviceId,
+      )
+
+      if (!response) {
+        logger.error('Advents: Failed to log session.')
+        return
+      }
+
+      if (response.device?.updatedDeviceId) {
+        this.internalDeviceId = response.device.updatedDeviceId
+        await updateInternalDeviceId(response.device.updatedDeviceId)
+      }
+
+      this.initialized = true
       logger.log('Advents: SDK initialized successfully.')
     } catch (e) {
       logger.error('Advents: There was an error while initializing.', e)
@@ -98,7 +121,7 @@ class Advents {
    */
   async logPurchase({ value }: Purchase) {
     try {
-      if (!this.initialized || !this.apiKey || !this.session) {
+      if (!this.initialized || !this.apiKey || !this.session || !this.internalDeviceId) {
         logger.error('Advents: SDK must be initialized before logging events.')
         return
       }
@@ -115,6 +138,7 @@ class Advents {
           sessionId: this.session.id,
         },
         this.apiKey,
+        this.internalDeviceId,
       )
 
       logger.log('Advents: Purchase logged successfully.', { value })

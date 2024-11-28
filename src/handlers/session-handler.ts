@@ -5,7 +5,7 @@ import { reactNativeModules } from '@/lib/react-native-modules'
 import { AndroidSessionData, IosSessionData, Session } from '@/types/session'
 import { sdkVersion } from '@/utils/package'
 
-export const getSessionData = async (): Promise<Session> => {
+export const getSessionData = async (isFirstSession: boolean): Promise<Session> => {
   let packageName: string | null = null
   let installTime: Date | null = null
   let userAgent: string | null = null
@@ -49,11 +49,12 @@ export const getSessionData = async (): Promise<Session> => {
     sdkVersion,
     framework: getFrameworkName(),
     deviceTime: new Date(),
-    os: Platform.OS,
-    package: packageName,
+    os: Platform.OS as 'ios' | 'android',
+    package: packageName ?? '',
+    isFirstSession,
 
     ...(await getAndroidSessionData()),
-    ...(await getIosSessionData()),
+    ...(await getIosSessionData(isFirstSession)),
 
     installTime,
     userAgent,
@@ -112,7 +113,7 @@ const getAndroidSessionData = async (): Promise<AndroidSessionData> => {
   }
 }
 
-const getIosSessionData = async (): Promise<IosSessionData> => {
+const getIosSessionData = async (isFirstSession: boolean): Promise<IosSessionData> => {
   if (Platform.OS !== 'ios') {
     return {
       iosIdfv: null,
@@ -124,42 +125,17 @@ const getIosSessionData = async (): Promise<IosSessionData> => {
   }
 
   let iosIdfv: string | null = null
-  let iosClipboardClickId: string | null = null
   let iosDeviceModelId: string | null = null
 
   if (expoModules) {
     iosIdfv = await expoModules.application.getIosIdForVendorAsync()
     iosDeviceModelId = expoModules.device.modelId
-
-    const clipboardHasUrl = await expoModules.clipboard.hasUrlAsync()
-
-    if (clipboardHasUrl) {
-      const clipboardUrl = await expoModules.clipboard.getUrlAsync()
-
-      const isAdventsClickId =
-        !!clipboardUrl && clipboardUrl.startsWith('https://advents.io/click_id=')
-
-      if (isAdventsClickId) {
-        iosClipboardClickId = clipboardUrl.split('https://advents.io/click_id=')[1]
-      }
-    }
   } else if (reactNativeModules) {
     iosIdfv = await reactNativeModules.device.getUniqueId()
     iosDeviceModelId = reactNativeModules.device.getDeviceId()
-
-    const clipboardHasUrl = await reactNativeModules.clipboard.hasURL()
-
-    if (clipboardHasUrl) {
-      const clipboardUrl = await reactNativeModules.clipboard.getString()
-
-      const isAdventsClickId =
-        !!clipboardUrl && clipboardUrl.startsWith('https://advents.io/click_id=')
-
-      if (isAdventsClickId) {
-        iosClipboardClickId = clipboardUrl.split('https://advents.io/click_id=')[1]
-      }
-    }
   }
+
+  const iosClipboardClickId = isFirstSession ? await getClipboardClickId() : null
 
   return {
     iosIdfv,
@@ -175,13 +151,6 @@ type IosTrackingData = {
 }
 
 const getIosTrackingData = async (): Promise<IosTrackingData> => {
-  if (Platform.OS !== 'ios') {
-    return {
-      iosIdfa: null,
-      iosAttPermissionStatus: null,
-    }
-  }
-
   let iosIdfa: string | null = null
   let iosAttPermissionStatus: string | null = null
 
@@ -208,4 +177,44 @@ const getIosTrackingData = async (): Promise<IosTrackingData> => {
     iosIdfa,
     iosAttPermissionStatus,
   }
+}
+
+const getClipboardClickId = async (): Promise<string | null> => {
+  if (expoModules) {
+    const clipboardHasUrl = await expoModules.clipboard.hasUrlAsync()
+
+    if (!clipboardHasUrl) {
+      return null
+    }
+
+    const clipboardUrl = await expoModules.clipboard.getUrlAsync()
+
+    const isAdventsClickId =
+      !!clipboardUrl && clipboardUrl.startsWith('https://advents.io/click_id=')
+
+    if (!isAdventsClickId) {
+      return null
+    }
+
+    return clipboardUrl.split('https://advents.io/click_id=')[1]
+  } else if (reactNativeModules) {
+    const clipboardHasUrl = await reactNativeModules.clipboard.hasURL()
+
+    if (!clipboardHasUrl) {
+      return null
+    }
+
+    const clipboardUrl = await reactNativeModules.clipboard.getString()
+
+    const isAdventsClickId =
+      !!clipboardUrl && clipboardUrl.startsWith('https://advents.io/click_id=')
+
+    if (!isAdventsClickId) {
+      return null
+    }
+
+    return clipboardUrl.split('https://advents.io/click_id=')[1]
+  }
+
+  return null
 }

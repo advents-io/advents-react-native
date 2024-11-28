@@ -25,16 +25,32 @@
     "prepublishOnly": "pnpm build",
     "publish": "pnpm publish"
   },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.3.3",
+    "tsup": "^8.3.0",
+    "typescript": "~5.4.5"
+  },
   "peerDependencies": {
-    "react-native": "*",
+    "@react-native-clipboard/clipboard": "*",
+    "@sparkfabrik/react-native-idfa-aaid": "*",
     "expo-application": "*",
-    "expo-device": "*",
     "expo-clipboard": "*",
     "expo-constants": "*",
+    "expo-device": "*",
     "expo-tracking-transparency": "*",
-    "react-native-device-info": "*",
-    "@react-native-clipboard/clipboard": "*",
-    "@sparkfabrik/react-native-idfa-aaid": "*"
+    "react-native": "*",
+    "react-native-device-info": "*"
   },
   "peerDependenciesMeta": {
     "expo-application": {
@@ -61,18 +77,5 @@
     "@sparkfabrik/react-native-idfa-aaid": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@typescript-eslint/eslint-plugin": "^8.11.0",
-    "@typescript-eslint/parser": "^8.11.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-react": "^7.37.1",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "prettier": "^3.3.3",
-    "tsup": "^8.3.0",
-    "typescript": "~5.4.5"
   }
 }

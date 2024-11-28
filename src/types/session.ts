@@ -14,12 +14,13 @@ export interface IosSessionData {
 
 export interface Session extends AndroidSessionData, IosSessionData {
   id: string
-  sdkName: string | null
-  sdkVersion: string | null
-  framework: string | null
-  deviceTime: Date | null
-  os: string | null
-  package: string | null
+  sdkName: string
+  sdkVersion: string
+  framework: string
+  deviceTime: Date
+  os: 'android' | 'ios'
+  package: string
+  isFirstSession: boolean
 
   installTime: Date | null
   userAgent: string | null
