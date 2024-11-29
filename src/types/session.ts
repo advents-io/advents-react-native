@@ -21,8 +21,8 @@ export interface Session extends AndroidSessionData, IosSessionData {
   os: 'android' | 'ios'
   package: string
   isFirstSession: boolean
+  installTime: Date
 
-  installTime: Date | null
   userAgent: string | null
   deviceName: string | null
   deviceBrand: string | null

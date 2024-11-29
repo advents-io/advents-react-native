@@ -52,11 +52,11 @@ export const getSessionData = async (isFirstSession: boolean): Promise<Session> 
     os: Platform.OS as 'ios' | 'android',
     package: packageName ?? '',
     isFirstSession,
+    installTime: installTime ?? new Date('0001-01-01T00:00:00Z'),
 
     ...(await getAndroidSessionData()),
     ...(await getIosSessionData(isFirstSession)),
 
-    installTime,
     userAgent,
     deviceName,
     deviceBrand,
