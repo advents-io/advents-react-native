@@ -1,7 +1,7 @@
 {
   "name": "advents-react-native",
   "description": "Advents React Native SDK for sending events to the Advents API.",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "author": "Gabriel Moresco gabriel@advents.io (https://github.com/gabriel-moresco)",
   "license": "MIT",
   "bugs": {
@@ -26,7 +26,8 @@
     "publish": "pnpm publish"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.17.11"
+    "@react-native-async-storage/async-storage": "^1.17.11",
+    "react-native-uuid": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",

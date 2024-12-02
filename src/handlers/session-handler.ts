@@ -1,4 +1,5 @@
 import { Platform } from 'react-native'
+import uuid from 'react-native-uuid'
 
 import { expoModules } from '@/lib/expo-modules'
 import { reactNativeModules } from '@/lib/react-native-modules'
@@ -44,7 +45,7 @@ export const getSessionData = async (isFirstSession: boolean): Promise<Session> 
   }
 
   const session: Session = {
-    id: crypto.randomUUID(),
+    id: uuid.v4(),
     sdkName: 'react-native',
     sdkVersion,
     framework: getFrameworkName(),

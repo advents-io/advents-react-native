@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import uuid from 'react-native-uuid'
 
 type DeviceInfo = {
   internalDeviceId: string
@@ -11,7 +12,7 @@ export const getDeviceInfo = async (): Promise<DeviceInfo> => {
   const isFirstSession = !id
 
   if (!id) {
-    id = crypto.randomUUID()
+    id = uuid.v4()
     await AsyncStorage.setItem('@advents:internal-device-id', id)
   }
 

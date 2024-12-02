@@ -38,6 +38,9 @@ importers:
       react-native-device-info:
         specifier: '*'
         version: 13.0.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0))
+      react-native-uuid:
+        specifier: ^2.0.3
+        version: 2.0.3
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -3847,6 +3850,10 @@ packages:
     resolution: {integrity: sha512-TKCq4XKl8lzB04RdEbADxkbzDJwOfWcxZxNcf1LweT+A+KRAUv1no7bch7RM0WLyMVKMTa2hbusESnzxB5QQRA==}
     peerDependencies:
       react-native: '*'
+
+  react-native-uuid@2.0.3:
+    resolution: {integrity: sha512-f/YfIS2f5UB+gut7t/9BKGSCYbRA9/74A5R1MDp+FLYsuS+OSWoiM/D8Jko6OJB6Jcu3v6ONuddvZKHdIGpeiw==}
+    engines: {node: '>=10.0.0', npm: '>=6.0.0'}
 
   react-native@0.73.9:
     resolution: {integrity: sha512-U9Lc6GMdANG2/9uREZe/UTQEzdVWw6NLRYxBYaFWNqiu/qZAmZ0aXSNcVF6hWw/95Ex0IGQx6EVMT4iPmuSNQw==}
@@ -9461,6 +9468,8 @@ snapshots:
   react-native-device-info@13.0.0(react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)):
     dependencies:
       react-native: 0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0)
+
+  react-native-uuid@2.0.3: {}
 
   react-native@0.73.9(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))(react@18.2.0):
     dependencies:
