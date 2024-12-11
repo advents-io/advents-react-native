@@ -1,46 +1,42 @@
-<p align="center">
-  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="misc/brand-dark.svg" />
-      <source media="(prefers-color-scheme: light)" srcset="misc/brand-light.svg" />
-      <img src="misc/brand-dark.svg" alt="Advents" width="312px" />
-    </picture>
-  </a>
-</p>
+<a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">
+  <img alt="Advents is the mobile attribution tool for modern apps." src="./.github/og.png">
+</a>
+
+<h2 align="center">Advents</h2>
 
 <p align="center">
-  Solução nacional de links mensuráveis, atribuição e engajamento de apps.
+  The AppsFlyer alternative.
   <br />
-  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo"><strong>Saiba mais »</strong></a>
+  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo"><strong>Learn more »</strong></a>
   <br />
   <br />
-  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">Site</a>
+  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">Website</a>
   ·
-  <a href="https://docs.advents.io">Documentação</a>
+  <a href="https://app.advents.io">Platform</a>
+  ·
+  <a href="https://docs.advents.io">Documentation</a>
 </p>
 
-Este é o repositório oficial da React Native SDK da Advents.
+This is the official repository for the Advents React Native SDK.
 
-## Documentação
+## Documentation
 
-Para informações detalhadas sobre como usar esta SDK em seu projeto React Native, consulte nossa documentação oficial:
+For getting started, please check our official documentation:
 
 [https://docs.advents.io](https://docs.advents.io)
 
-## Contribuição
+## Contribution
 
-Fique a vontade para contribuir com a SDK! Para contribuir, siga estes passos:
+Feel free to contribute to the SDK! Follow these steps:
 
-1. Faça um fork do repositório
-2. Crie sua branch de feature (`git checkout -b feature/new-feature`)
-3. Faça commit das suas alterações (`git commit -m 'Add the feature that do something.'`)
-4. Faça push para a branch (`git push origin feature/new-feature`)
-5. Abra um Pull Request
+1. Fork this repository
+2. Create your feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add the feature that do something.'`)
+4. Push your commits (`git push origin feature/new-feature`)
+5. Open a pull request
 
-Por favor, certifique-se de aderir ao estilo padrão do código do projeto.
+Please ensure to adhere to the project's coding style.
 
-## Licença
+## License
 
-Este projeto está licenciado sob a Licença GNU Affero General Public License Version 3 (AGPLv3) ou qualquer versão posterior - veja o arquivo [LICENSE](LICENSE.md) para detalhes.
-
-Obrigado pelo seu interesse na Advents!
+This project is licensed under the GNU Affero General Public License Version 3 (AGPLv3) or any later version - see the [LICENSE](LICENSE.md) file for details.
