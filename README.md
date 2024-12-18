@@ -1,5 +1,5 @@
 <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">
-  <img alt="Advents brand." src="./.github/og.png">
+  <img alt="Advents brand." src="./.github/og.png" />
 </a>
 
 <h2 align="center">Advents</h2>
