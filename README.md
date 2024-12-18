@@ -1,20 +1,22 @@
 <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">
-  <img alt="Advents is the mobile attribution tool for modern apps." src="./.github/og.png">
+  <img alt="Advents brand." src="./.github/og.png">
 </a>
 
 <h2 align="center">Advents</h2>
 
 <p align="center">
-  The AppsFlyer alternative.
+  The platform to grow your app.
   <br />
-  <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo"><strong>Learn more »</strong></a>
+  Advents is the alternative to AppsFlyer and Firebase Dynamic Links.
   <br />
   <br />
   <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">Website</a>
   ·
   <a href="https://app.advents.io">Platform</a>
   ·
-  <a href="https://docs.advents.io">Documentation</a>
+  <a href="https://docs.advents.io">Docs</a>
+  ·
+  <a href="https://www.youtube.com/watch?v=3fAn__YR6jI">Demo</a>
 </p>
 
 This is the official repository for the Advents React Native SDK.
