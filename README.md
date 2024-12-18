@@ -19,6 +19,8 @@
   <a href="https://www.youtube.com/watch?v=3fAn__YR6jI">Demo</a>
 </p>
 
+<br />
+
 This is the official repository for the Advents React Native SDK.
 
 ## Documentation
