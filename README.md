@@ -7,7 +7,7 @@
 <p align="center">
   The platform to grow your app.
   <br />
-  Advents is the alternative to AppsFlyer and Firebase Dynamic Links.
+  Advents is an alternative to AppsFlyer and Firebase Dynamic Links.
   <br />
   <br />
   <a href="https://advents.io/?utm_medium=social&utm_source=github&utm_campaign=advents-react-native-repo">Website</a>
@@ -16,7 +16,7 @@
   ·
   <a href="https://docs.advents.io">Docs</a>
   ·
-  <a href="https://www.youtube.com/watch?v=3fAn__YR6jI">Demo</a>
+  <a href="https://www.youtube.com/watch?v=eYzF5tCwq_A">Demo</a>
 </p>
 
 <br />
